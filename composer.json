@@ -19,5 +19,8 @@
         "psr-4": {
             "ChrGriffin\\PHPBenchmarks\\": "src/"
         }
-    }
+    },
+    "bin": [
+        "phpbench"
+    ]
 }
