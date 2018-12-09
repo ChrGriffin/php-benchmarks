@@ -1,0 +1,6 @@
+<?php
+
+require __DIR__ . '/vendor/autoload.php';
+
+$cli = new ChrGriffin\PHPBenchmarks\BenchmarkerCli;
+$cli->run();

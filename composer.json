@@ -1,0 +1,23 @@
+{
+    "name": "chrgriffin/php-benchmarks",
+    "description": "A PHP class for benchmarking with PHPUnit-style class usage.",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Christian Griffin",
+            "email": "christian.griffin@live.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0",
+        "devster/ubench": "^2.0",
+        "splitbrain/php-cli": "^1.1",
+        "phpdocumentor/reflection-docblock": "^4.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "ChrGriffin\\PHPBenchmarks\\": "src/"
+        }
+    }
+}
