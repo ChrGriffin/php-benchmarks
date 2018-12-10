@@ -73,21 +73,11 @@ class Benchmarker
     }
 
     /**
-     * Add ArrayMaxIndex to the array of benchmarks to run.
-     *
-     * @return Benchmarker
-     * @throws BenchmarkNotFoundException
-     */
-    public function arrayMaxIndex()
-    {
-        return $this->addBenchmark(ArrayMaxIndex::class);
-    }
-
-    /**
      * Run all benchmarks.
      *
      * @return void
      * @throws \ReflectionException
+     * @throws \Exception
      */
     public function runBenchmarks()
     {
@@ -135,18 +125,24 @@ class Benchmarker
                     ));
 
                     $this->benchmarkGroups
-                    [$class]
-                    [$benchmarkGroup->getDescription()->render()]
-                    [] = [
-                        'method' => $method->name,
-                        'readable' => $readable,
-                        'time' => null,
-                    ];
+                        [$class]
+                        [$benchmarkGroup->getDescription()->render()]
+                        [] = [
+                            'method' => $method->name,
+                            'readable' => $readable,
+                            'time' => null,
+                        ];
                 }
             }
         }
     }
 
+    /**
+     * Benchmark all configured classes.
+     *
+     * @return void
+     * @throws \Exception
+     */
     protected function benchmarkClasses()
     {
         foreach($this->benchmarkGroups as $benchmarkClass => $benchmarkGroups) {
@@ -166,7 +162,7 @@ class Benchmarker
                         [$benchmarkClass]
                         [$group]
                         [$method]
-                        ['time'] = $this->benchmarker->getTime();
+                        ['time'] = $this->benchmarker->getTime(true);
                 }
             }
         }

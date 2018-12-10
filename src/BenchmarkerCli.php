@@ -53,8 +53,6 @@ class BenchmarkerCli extends CLI
 
     /**
      * @inheritdoc
-     * @throws Exceptions\BenchmarkNotFoundException
-     * @throws \ReflectionException
      */
     public function main(Options $options)
     {
@@ -63,8 +61,28 @@ class BenchmarkerCli extends CLI
             return;
         }
 
+        if($options->getCmd()) {
+            $this->{('run' . ucfirst($options->getCmd()))}($options);
+        }
+    }
+
+    /**
+     * Run the `benchmark` command.
+     *
+     * @param Options $options
+     * @return void
+     * @throws Exceptions\BenchmarkNotFoundException
+     * @throws \ReflectionException
+     */
+    protected function runBenchmark(Options $options)
+    {
         if($options->getOpt('bootstrap')) {
             require_once $options->getOpt('bootstrap');
+        }
+
+        if(!$options->getArgs()[0]) {
+            $this->error('At least one class to benchmark is required.');
+            exit(1);
         }
 
         $classes = explode(',', $options->getArgs()[0]);
