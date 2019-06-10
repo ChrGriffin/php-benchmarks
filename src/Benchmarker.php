@@ -12,7 +12,7 @@ class Benchmarker
     /**
      * @var int
      */
-    protected $benchmarkLoops = 100000000;
+    protected $benchmarkLoops = 1000000;
 
     /**
      * @var DocBlockFactory
