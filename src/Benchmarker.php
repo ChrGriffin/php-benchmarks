@@ -12,7 +12,7 @@ class Benchmarker
     /**
      * @var int
      */
-    protected $benchmarkLoops = 100000;
+    protected $benchmarkLoops = 100000000;
 
     /**
      * @var DocBlockFactory
@@ -35,18 +35,14 @@ class Benchmarker
     protected $benchmarkGroups = [];
 
     /**
-     * Return benchmarker groups.
-     *
      * @return array
      */
-    public function getBenchmarkGroups()
+    public function getBenchmarkGroups(): array
     {
         return $this->benchmarkGroups;
     }
 
     /**
-     * Benchmarker constructor.
-     *
      * @return void
      */
     public function __construct()
@@ -56,13 +52,11 @@ class Benchmarker
     }
 
     /**
-     * Add an additional benchmark class to the array of benchmarks.
-     *
      * @param string $class
      * @return Benchmarker
      * @throws BenchmarkNotFoundException
      */
-    public function addBenchmark(string $class)
+    public function addBenchmark(string $class): Benchmarker
     {
         if(!class_exists($class)) {
             throw new BenchmarkNotFoundException('Class ' . $class . ' does not exist.');
@@ -73,25 +67,21 @@ class Benchmarker
     }
 
     /**
-     * Run all benchmarks.
-     *
      * @return void
      * @throws \ReflectionException
      * @throws \Exception
      */
-    public function runBenchmarks()
+    public function runBenchmarks(): void
     {
         $this->mapBenchmarkMethods();
         $this->benchmarkClasses();
     }
 
     /**
-     * Loop over all benchmarking classes and group any benchmarking methods into associated groups.
-     *
      * @return void
      * @throws \ReflectionException
      */
-    protected function mapBenchmarkMethods()
+    protected function mapBenchmarkMethods(): void
     {
         foreach($this->benchmarkClasses as $class) {
 
@@ -138,12 +128,10 @@ class Benchmarker
     }
 
     /**
-     * Benchmark all configured classes.
-     *
      * @return void
      * @throws \Exception
      */
-    protected function benchmarkClasses()
+    protected function benchmarkClasses(): void
     {
         foreach($this->benchmarkGroups as $benchmarkClass => $benchmarkGroups) {
 

@@ -25,8 +25,6 @@ class ArrayMaxIndex
     protected $largeAssociativeArray = [];
 
     /**
-     * ArrayMaxIndex constructor.
-     *
      * @return void
      */
     public function __construct()
@@ -43,7 +41,7 @@ class ArrayMaxIndex
      * @param int $length
      * @return array
      */
-    protected function makeAssociativeArray(int $length)
+    protected function makeAssociativeArray(int $length): array
     {
         $char = 'a';
         $array = [];
@@ -57,9 +55,10 @@ class ArrayMaxIndex
     }
 
     /**
+     * @return void
      * @benchmarkGroup smallNumericArray
      */
-    public function benchmarkForeachLoopSmallNumericArray()
+    public function benchmarkForeachLoopSmallNumericArray(): void
     {
         $array = $this->smallNumericArray;
         $max = 0;
@@ -73,9 +72,10 @@ class ArrayMaxIndex
     }
 
     /**
+     * @return void
      * @benchmarkGroup smallNumericArray
      */
-    public function benchmarkForLoopSmallNumericArray()
+    public function benchmarkForLoopSmallNumericArray(): void
     {
         $array = $this->smallNumericArray;
         $max = 0;
@@ -89,18 +89,20 @@ class ArrayMaxIndex
     }
 
     /**
+     * @return void
      * @benchmarkGroup smallNumericArray
      */
-    public function benchmarkArray_flipSmallNumericArray()
+    public function benchmarkArray_flipSmallNumericArray(): void
     {
         $array = $this->smallNumericArray;
         $maxKey = array_flip($array)[max($array)];
     }
 
     /**
+     * @return void
      * @benchmarkGroup largeNumericArray
      */
-    public function benchmarkForeachLoopLargeNumericArray()
+    public function benchmarkForeachLoopLargeNumericArray(): void
     {
         $max = 0;
         $maxKey = null;
@@ -113,9 +115,10 @@ class ArrayMaxIndex
     }
 
     /**
+     * @return void
      * @benchmarkGroup largeNumericArray
      */
-    public function benchmarkForLoopLargeNumericArray()
+    public function benchmarkForLoopLargeNumericArray(): void
     {
         $max = 0;
         $maxKey = null;
@@ -128,17 +131,19 @@ class ArrayMaxIndex
     }
 
     /**
+     * @return void
      * @benchmarkGroup largeNumericArray
      */
-    public function benchmarkArray_flipLargeNumericArray()
+    public function benchmarkArray_flipLargeNumericArray(): void
     {
         $maxKey = array_flip($this->largeNumericArray)[max($this->largeNumericArray)];
     }
 
     /**
+     * @return void
      * @benchmarkGroup smallAssociativeArray
      */
-    public function benchmarkForeachLoopSmallAssociativeArray()
+    public function benchmarkForeachLoopSmallAssociativeArray(): void
     {
         $max = 0;
         $maxKey = null;
@@ -151,14 +156,16 @@ class ArrayMaxIndex
     }
 
     /**
+     * @return void
      * @benchmarkGroup smallAssociativeArray
      */
-    public function benchmarkArray_flipSmallAssociativeArray()
+    public function benchmarkArray_flipSmallAssociativeArray(): void
     {
         $maxKey = array_flip($this->smallAssociativeArray)[max($this->smallAssociativeArray)];
     }
 
     /**
+     * @return void
      * @benchmarkGroup largeAssociativeArray
      */
     public function benchmarkForeachLoopLargeAssociativeArray()
@@ -174,9 +181,10 @@ class ArrayMaxIndex
     }
 
     /**
+     * @return void
      * @benchmarkGroup largeAssociativeArray
      */
-    public function benchmarkArray_flipLargeAssociativeArray()
+    public function benchmarkArray_flipLargeAssociativeArray(): void
     {
         $maxKey = array_flip($this->largeAssociativeArray)[max($this->largeAssociativeArray)];
     }
