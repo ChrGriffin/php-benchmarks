@@ -18,17 +18,7 @@ class SplitLoopOperations
     /**
      * @return void
      */
-    public function firstForLoop(): void
-    {
-        for($i = 0; $i < 100; $i++) {
-            $math = (1 * 2 * 3 * 4 * 5 * 6 * 7 * 8 * 9);
-        }
-    }
-
-    /**
-     * @return void
-     */
-    public function secondForLoop(): void
+    public function oneForLoop(): void
     {
         for($i = 0; $i < 100; $i++) {
             $math = (1 * 2 * 3 * 4 * 5 * 6 * 7 * 8 * 9);
@@ -49,7 +39,7 @@ class SplitLoopOperations
     /**
      * @return void
      */
-    public function firstForeachLoop(): void
+    public function oneForeachLoop(): void
     {
         foreach(range(1, 100) as $i) {
             $math = (1 * 2 * 3 * 4 * 5 * 6 * 7 * 8 * 9);
@@ -59,11 +49,24 @@ class SplitLoopOperations
     /**
      * @return void
      */
-    public function secondForeachLoop(): void
+    public function bothArrayMaps(): void
     {
-        foreach(range(1, 100) as $i) {
+        array_map(function (int $i) {
             $math = (1 * 2 * 3 * 4 * 5 * 6 * 7 * 8 * 9);
-        }
+            $math = (1 * 2 * 3 * 4 * 5 * 6 * 7 * 8 * 9);
+            return $i;
+        }, range(1, 100));
+    }
+
+    /**
+     * @return void
+     */
+    public function oneArrayMap(): void
+    {
+        array_map(function (int $i) {
+            $math = (1 * 2 * 3 * 4 * 5 * 6 * 7 * 8 * 9);
+            return $i;
+        }, range(1, 100));
     }
 
     /**
@@ -81,8 +84,8 @@ class SplitLoopOperations
      */
     public function benchmarkSplitForLoop(): void
     {
-        $this->firstForLoop();
-        $this->secondForLoop();
+        $this->oneForLoop();
+        $this->oneForLoop();
     }
 
     /**
@@ -100,7 +103,26 @@ class SplitLoopOperations
      */
     public function benchmarkSplitForeachLoop(): void
     {
-        $this->firstForeachLoop();
-        $this->secondForeachLoop();
+        $this->oneForeachLoop();
+        $this->oneForeachLoop();
+    }
+
+    /**
+     * @return void
+     * @benchmarkGroup splitArrayMapVersusUnifiedArrayMap
+     */
+    public function benchmarkUnifiedArrayMap(): void
+    {
+        $this->bothArrayMaps();
+    }
+
+    /**
+     * @return void
+     * @benchmarkGroup splitArrayMapVersusUnifiedArrayMap
+     */
+    public function benchmarkSplitArrayMap(): void
+    {
+        $this->oneArrayMap();
+        $this->oneArrayMap();
     }
 }
